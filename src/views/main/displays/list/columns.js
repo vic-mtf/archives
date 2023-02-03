@@ -1,9 +1,24 @@
+import DeleteOutlineOutlinedIcon  from "@mui/icons-material/DeleteOutlineOutlined";
+import LaunchRoundedIcon from '@mui/icons-material/LaunchRounded';
+import { GridActionsCellItem } from "@mui/x-data-grid";
+
 const columns = [
   { 
     field: 'id', 
-    headerName: 'N°', 
     width: 50,
-    type: 'number'
+    type: 'actions',
+    getActions: (data) => [
+      <GridActionsCellItem 
+        icon={<LaunchRoundedIcon />} 
+        onClick={() => {
+          const link = document.createElement('a');
+          link.target = '_blank';
+          link.href = data?.row?.contentUrl;
+          link.click();
+        }}
+        label="Ouvrir"
+      />,
+    ],
   },
   { 
     field: 'createdAt', 
@@ -81,6 +96,15 @@ const columns = [
     field: 'status',
     headerName: 'Statut',
     width: 175
+  },
+  {
+    field: 'actions',
+   // headerName: 'Actions',
+    type: 'actions',
+    width: 50,
+    getActions: () => [
+      <GridActionsCellItem icon={<DeleteOutlineOutlinedIcon />} label="Delete" />,
+    ],
   },
 ]
 

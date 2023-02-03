@@ -13,10 +13,10 @@ export default function Main () {
     return (
         <MuiBox component="main" sx={{ flexGrow: 1, px: .5, width: "100%" }}>
             <Toolbar variant="dense"/>
-            <SubHeader/>
+            {/* <SubHeader/> */}
             <Divider/>
             <MuiBox
-                height="calc(100% - 100px)"
+                height="calc(100%)"
                 overflow="hidden"
             >
                 {<ListData data={data}/>}

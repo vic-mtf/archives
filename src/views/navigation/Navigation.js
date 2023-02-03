@@ -1,5 +1,6 @@
 import { Drawer, Toolbar, Box as MuiBox } from "@mui/material";
-import ListOptions from "./ListOptions";
+import Columns from "./columns/Columns";
+//import ListOptions from "./ListOptions";
 import OrganicFrame from "./organicframe/OrganicFrame";
 
 export const drawerWidth = 250;
@@ -19,7 +20,7 @@ export default function Navigation () {
         >
             <Toolbar/>
             <MuiBox sx={{ overflow: 'auto' }}>
-                <OrganicFrame/>
+                <Columns/>
             </MuiBox>
         </Drawer>
     )

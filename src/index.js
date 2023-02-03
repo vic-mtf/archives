@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
       <ConfigAppWrapper>
-        <App />
+        <App/>
       </ConfigAppWrapper>
     </ReduxProvider>
   </React.StrictMode>

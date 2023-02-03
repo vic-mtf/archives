@@ -7,7 +7,7 @@ import {
     TableSortLabel,
     Checkbox
 } from '@mui/material';
-import Typography from '../../../components/Typography';
+import Typography from '../../../../../../components/Typography';
 
 export default function DataGridHeader ({
     columns, 

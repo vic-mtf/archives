@@ -8,7 +8,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import propTypes from 'prop-types';
 import DataGridHeader from './header/DataGridHeader';
 import DataGridBody from './body/DataGridBody';
-import { sortFuncDate, sortFuncString, sortNumber } from '../../utils/sortDate';
+import { sortFuncDate, sortFuncString, sortNumber } from '../../../../../utils/sortDate';
 
 export default function DataGrid (props) {
     const {
@@ -57,7 +57,7 @@ export default function DataGrid (props) {
         if(type === 'date') 
             _array.sort((a, b) => sortFuncDate(new Date(a[field]), new Date(b[field])));
         else if(type === 'number')
-            _array.sort((a, b) => parseFloat(a[field]) - parseFloat(b[field]));
+            _array.sort((a, b) => sortNumber(parseFloat(a[field]), parseFloat(b[field])));
         else 
             _array.sort((a, b) => sortFuncString(a[field]?.toString(), b[field]?.toString()));
         if(sortOrder === 'desc') _array.reverse();
@@ -83,8 +83,6 @@ export default function DataGrid (props) {
             />
             <TableContainer
                 sx={{
-                    display: 'flex',
-                    flex: 1,
                     height: 500,
                 }}
             >
