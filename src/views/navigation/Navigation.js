@@ -18,8 +18,8 @@ export default function Navigation () {
                 },
             }}
         >
-            <Toolbar/>
-            <MuiBox sx={{ overflow: 'auto' }}>
+            <Toolbar variant="dense"/>
+            <MuiBox sx={{ overflow: 'hidden', display: 'flex', flexGrow: 1, }}>
                 <Columns/>
             </MuiBox>
         </Drawer>

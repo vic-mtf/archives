@@ -1,40 +1,23 @@
-import { useEffect, useMemo, useState } from "react"
-import { DataGrid, frFR } from "@mui/x-data-grid";
-import columns from "./columns";
+import { useEffect, useState } from "react"
 import { CircularProgress, Paper } from "@mui/material";
-import { DataGridPro, GridToolbar } from "@mui/x-data-grid-pro";
+import { DataGridPro, GridToolbar, frFR } from "@mui/x-data-grid-pro";
+import useColumns from "../../../../utils/useColumns";
+import useRows from "../../../../utils/useRows";
 
 export default function ListData ({data}) {
     const [loading, setLoading] = useState(true);
-    const rows = useMemo(() => 
-        data.map((item, index) => ({
-            ...item,
-            id: index + 1,
-            createdAt: new Date(item.createdAt),
-            classNum: '---------',
-            code: '---------',
-            destination: '---------',
-            urgence: '---------',
-            refNum: '---------',
-            numServiceDis: '---------',
-            origin: item.createdBy.role,
-            type: item.type?.type,
-            designation: item?.designation,
-            object: item?.object,
-            description: item?.description,
-            secrete: '---------',
-            status: '---------',
-            subType: item.type?.subType || '---------',
-        })),[data]);
+    const columns = useColumns();
+    const rows = useRows(data);
 
     useEffect(() => {
-        const hackingDom = document.querySelector('.Mui-resizeTriggers')?.previousElementSibling;
+        const hackingDom = document.querySelector('.Mui-resizeTriggers')
+        ?.previousElementSibling;
         if(hackingDom)
-           hackingDom.innerHTML = '';
-        if(hackingDom?.innerHTML === '' && loading)
+           hackingDom.parentElement.removeChild(hackingDom);
+        if(!hackingDom && loading)
             setLoading(false);
-        
-    });
+    }, [loading]);
+
     return (
         <Paper
             sx={{
@@ -44,6 +27,7 @@ export default function ListData ({data}) {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
+            component="div"
         >
             <DataGridPro
                 columns={columns}
@@ -52,6 +36,7 @@ export default function ListData ({data}) {
                 pageSize={100}
                 rowsPerPageOptions={[100]}
                 disableColumnSelector
+                autoPageSize
                 // isCellEditable={event => {
                 //     console.log(event)
                 // }}
