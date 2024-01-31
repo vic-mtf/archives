@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-export default function useRows (data) {
+export default function useRows (data=[]) {
     const rows = useMemo(() => 
         data.map((item, index) => ({
             ...item,

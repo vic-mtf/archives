@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
 import appConfig from '../configs/app-config.json';
+import deepMerge from "../utils/deepMerge";
 
 const { lang, colors: { primary: { mode } } } = appConfig;
 
@@ -15,8 +16,18 @@ const app = createSlice({
         users: [],
         user: null,
         stayConnected: false,
+        archives: {
+            openLeftNavigation: true,
+        },
     },
     reducers: {
+        updateAppData(state, actions) {
+            const { data } = actions.payload;
+            const states = deepMerge(state, data);
+            Object.keys(states).forEach(key => {
+                state[key] = states[key];
+            });
+        },
         switchTheme (state, actions) {
             state.mode = actions.payload || mode;
         },
@@ -40,6 +51,7 @@ export const {
     changeLang, 
     removeUser,
     setUser,
+    updateAppData
 } = app.actions;
 
 export default persistReducer({

@@ -7,6 +7,7 @@ export default function getFile (props = inputFile) {
                     inputFile[prop] = props[prop];
                 })
             inputFile.type = 'file';
+            inputFile.value = '';
             inputFile.onchange = event => {
                 const { files } = event.target;
                 if(files?.length) resolve(files);

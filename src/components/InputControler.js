@@ -6,6 +6,7 @@ import validateFields from '../utils/validateFields';
 export default function InputControler ({
     children, 
     regExp,
+    multiline,
     emptyErrorMessage,
     invalidateErrorMessage,
     type,
@@ -16,16 +17,18 @@ export default function InputControler ({
     externalError,
     name,
     defaultValue,
+    inputRef,
     onChange: handleChange,
+    label,
     ...otherProps
 }) {
     const [values, setValues] = useState({
         value: defaultValue,
-        error: false,
+        error: true,
     });
     const validate = validateFields[`validate${capStr(type)}`];
     const validateFunc = (autoControler) ? validate :
-    value => value.toString().match(new RegExp(regExp));
+    value => value.toString().trim().match(new RegExp(regExp));
     const error = useMemo(() => !!(externalError && (values.error)), 
         [
             values.error, 
@@ -46,12 +49,20 @@ export default function InputControler ({
     
     useLayoutEffect(() => {
         if(typeof valueRef === 'object') 
-            valueRef.current = values.error ? null : values.value;
+            valueRef.current = values.error ? null : values.value.trim();
     });
 
     const cloneChild = React.cloneElement(
         React.Children.only(children),
-        {...values, error, size, onChange}
+        {
+            ...values, 
+            error, 
+            size, 
+            onChange,
+            multiline, 
+            rows: 3,
+            inputRef,
+        }
     );
 
     return (
