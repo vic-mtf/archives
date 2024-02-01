@@ -1,11 +1,7 @@
 import { useMemo } from 'react';
 import { Toolbar, Box as MuiBox, Divider } from "@mui/material";
-//import queryString from "query-string";
-//import { useMemo } from "react";
 import { useSelector } from "react-redux";
-//import { useLocation } from "react-router-dom";
 import ListData from "./displays/list/ListData";
-//import Thumbnail from "./displays/thumbnail/Thumbnail";
 import SubHeader from "./sub-header/SubHeader";
 import { drawerWidth } from "../navigation/Navigation";
 
