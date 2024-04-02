@@ -25,7 +25,7 @@ export default function TreeDataView() {
       {data.map((data, index) => (
         data.folder ? 
         <TreeFolderData 
-          nodeId={index}
+          nodeId={index.toString()}
           labelText={data.designation}
           key={index}
         /> :
@@ -40,7 +40,7 @@ export default function TreeDataView() {
   );
 }
 
-const TreeFolderData = ({ nodeId=0, labelText }) => {
+const TreeFolderData = ({ nodeId='0', labelText }) => {
   const data = useDate();
 
   return (

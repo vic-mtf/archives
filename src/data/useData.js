@@ -6,11 +6,10 @@ const useDate = (num = 7) => {
 
   useEffect(() => {
     const newData = Array.from({length: num}, () => ({
-      id: faker.datatype.uuid(),
+      id: faker.database.mongodbObjectId(),
       createdAt: faker.date.past().toLocaleDateString(),
       designation: faker.commerce.productName(),
-    //   origin: faker,
-      destination: faker.address.city(),
+      destination: faker.company.name,
       numeroDeClassement: faker.string.alphanumeric(5).toLocaleLowerCase(),
       numeroDeReference: faker.string.alphanumeric(5).toLocaleLowerCase(),
       status: faker.helpers.arrayElement(['Active', 'Inactive']),
@@ -18,11 +17,10 @@ const useDate = (num = 7) => {
       code: faker.string.numeric(5),
       type: faker.commerce.productName(),
       sousType: faker.commerce.productName(),
-      status: faker.helpers.arrayElement(['Active', 'Inactive']),
       folder: faker.datatype.boolean()
     }));
     setData(newData);
-  }, []);
+  }, [num]);
 
   const sortData = useMemo(() => {
     const folders = [];

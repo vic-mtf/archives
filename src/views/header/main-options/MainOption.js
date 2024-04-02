@@ -18,7 +18,7 @@ export default function MainOption () {
                                 <MuiBox>
                                     <IconButton 
                                         onClick={action} 
-                                        color="inherit" 
+                                        // color="inherit" 
                                         disabled={disabled}
                                     >
                                         {icon}

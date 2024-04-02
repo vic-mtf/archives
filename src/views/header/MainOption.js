@@ -31,7 +31,7 @@ const AppsMenuButton = () => {
             <Tooltip title="Applications" arrow>
                 <IconButton 
                     size="small" 
-                    color="inherit"
+                    // color="inherit"
                     sx={{mx: 1}} 
                     ref={anchorRef}
                     onClick={() => {

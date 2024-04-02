@@ -15,19 +15,24 @@ import SwingAnimation from "../../components/SwingAnimation";
 import { useDispatch, useSelector } from 'react-redux';
 import openSignIn from "./openSignIn";
 import channels from "../../utils/channels";
+import useGetData from '../../utils/useGetData';
 import { decrypt } from '../../utils/crypt';
 import { updateUser } from '../../redux/user';
 
 export default function Cover ({ setOpened }) {
     const connected = useSelector(store => store.user.connected);
-    const loaded = useSelector(store => store.data.loaded);
+    // const loaded = useSelector(store => store.data.loaded);
     const dispatch = useDispatch();
-
+    const [loading, getData] = useGetData({
+        onBeforeUpdate( data ) {
+            console.log(data);
+            setOpened(true);
+        }
+    }) 
     const handleFinish = useCallback(() => {
-        if(connected) setOpened(true);
+        if(connected) getData(true);
         else openSignIn();
-        if(loaded) setOpened(true);
-    },[connected, setOpened, loaded]);
+    },[connected, getData]);
 
 
     useEffect(() => {
@@ -45,7 +50,7 @@ export default function Cover ({ setOpened }) {
         return () => {
             SIGN_IN_CHANNEL.removeEventListener("message", handleLogin);
         }
-    }, [dispatch]);
+    }, [dispatch, setOpened]);
 
     return (
         <Box
@@ -114,7 +119,7 @@ export default function Cover ({ setOpened }) {
                         color="text.primary"
                     >Archives </Typography>
                 </Stack>
-                {/* {loading &&
+                {loading &&
                 <CircularProgress
                     size={15}
                     sx={{
@@ -122,7 +127,7 @@ export default function Cover ({ setOpened }) {
                         top: '150%',
                         color: 'text.primary'
                     }}
-                />} */}
+                />}
             </MuiBox>
            </Stack>
            <Typography variant="caption" paragraph color="text.primary">

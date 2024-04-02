@@ -31,7 +31,7 @@ const columns = [
   },
   {
     label: 'Numéro de classement',
-    dataKey: 'numeroDeReference'
+    dataKey: 'numeroDeClassement'
   },
   {
     label: 'Numéro de Reference',
