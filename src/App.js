@@ -11,10 +11,10 @@ export default function App() {
 
   return (
     <BoxGradient>
-       { (connected && opened) ? 
-       (<RouterProvider router={router} />) : 
-       (<Cover setOpened={setOpened} />) 
-       }
+      {
+        (connected && opened) ? (<RouterProvider router={router} />) : 
+        (<Cover setOpened={setOpened} />) 
+      }
     </BoxGradient>
   );
 }

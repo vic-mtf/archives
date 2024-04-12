@@ -17,13 +17,13 @@ const user = createSlice({
                 state[key] = states[key];
             });
         },
-        deconnected (state) {
+        disconnected (state) {
             state.connected = false;
         }
     }
 });
 
-export const { deconnected, updateUser } = user.actions;
+export const { disconnected, updateUser } = user.actions;
 export default persistReducer({
     storage,
     key:'__ROOT_GEID_USER_CONFIG_APP'

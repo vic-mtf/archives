@@ -15,7 +15,7 @@ import Button from '../../components/Button';
 import Typography from '../../components/Typography';
 import { removeUser } from '../../redux/app';
 import { removeData } from '../../redux/data';
-import { deconnected } from '../../redux/user';
+import { disconnected } from '../../redux/user';
 
 export default function DeconnectDialog () {
     const [open, setOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function DeconnectDialog () {
     const [checked, setChecked] = useState(false);
 
     const handleDeconnecte = () => {
-        dispatch(deconnected());
+        dispatch(disconnected());
         sessionStorage.clear();
         dispatch(removeData());
        if(checked) {
@@ -38,14 +38,14 @@ export default function DeconnectDialog () {
         const handleOpen = () => setOpen(true);
         document.getElementById('root')
         .addEventListener(
-            '_deconnected', 
+            '_disconnected', 
             handleOpen
         );
 
        return () => {
             document.getElementById('root')
             .removeEventListener(
-                '_deconnected', 
+                '_disconnected', 
                 handleOpen
             );
        }

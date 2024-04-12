@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Checkbox, TableBody, TableCell, TableRow } from '@mui/material';
 import PropTypes from 'prop-types';
 import TableCellInput from './TableCellInput';
@@ -33,7 +33,7 @@ export default function DataGridBody ({
             });
             return row_;
         })
-    , [_rows, columns, checkbox, isSelectedRow]);
+    , [_rows, columns, checkbox, isSelectedRow, handleToggleSelectedRow]);
    
     return (
         <React.Fragment>

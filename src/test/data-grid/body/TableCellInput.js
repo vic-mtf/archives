@@ -1,4 +1,4 @@
-import { InputBase, Box, useTheme, TableCell, FormControl } from "@mui/material";
+import { InputBase, useTheme, TableCell, FormControl } from "@mui/material";
 import { useState } from "react";
 
 export default function TableCellInput ({value, multiline}) {
@@ -7,43 +7,41 @@ export default function TableCellInput ({value, multiline}) {
     const [readOnly, setReadOnly] = useState(true);
 
     return (
-        
-            <TableCell
-                height={100} 
-                variant="body"
-                padding="none"
+        <TableCell
+            height={100} 
+            variant="body"
+            padding="none"
+        >
+            <FormControl
+                sx={{
+                    border: theme => `1px solid ${focus ? theme.palette.primary.main : 'transparent'}`,
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
             >
-                 <FormControl
+                <InputBase
+                    multiline={multiline}
+                    defaultValue={value}
+                    maxRows={3}
+                    onFocus={() => setFocus(true)}
+                    onBlur={() => setFocus(false)}
                     sx={{
-                        border: theme =>`1px solid ${focus ? theme.palette.primary.main : 'transparent'}`,
-                        height: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        
+                        ...theme.typography.caption,
+                        overflow: 'hidden',
                     }}
-                 >
-                    <InputBase
-                            multiline={multiline}
-                            defaultValue={value}
-                            maxRows={3}
-                            onFocus={() => setFocus(true)}
-                            onBlur={() => setFocus(false)}
-                            sx={{
-                                ...theme.typography.caption,
-                                overflow: 'hidden',
-                            }}
-                            onDoubleClick={() => setReadOnly(false)}
-                            readOnly={readOnly}
-                            inputProps={{
-                               style: {
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                               }
-                            }}
-                    >
-                    </InputBase>
-                </FormControl>
-            </TableCell>
-    )
+                    onDoubleClick={() => setReadOnly(false)}
+                    readOnly={readOnly}
+                    inputProps={{
+                        style: {
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                        }
+                    }}
+                >
+                </InputBase>
+            </FormControl>
+        </TableCell>
+    );
 }

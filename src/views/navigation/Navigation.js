@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { Drawer, Toolbar, Box as MuiBox, Divider } from "@mui/material";
 import TreeDataView from "./tree-data-view/TreeDataView";
 import SearchInput from "../../components/SearchInput";
@@ -12,18 +11,18 @@ export const drawerWidth = 350;
 export default function Navigation () {
     const open = useSelector(store => store.app.archives.openLeftNavigation);
     const dispatch = useDispatch();
-    const width = useMemo(() => open ? drawerWidth : 0, [open]);
+
+    console.log('Hollo world !');
 
     return (
         <Drawer
             variant="persistent"
             open={open}
             sx={{
-                width,
+                width: drawerWidth, 
                 flexShrink: 0,
-                
                 [`& .MuiDrawer-paper`]: { 
-                    width, 
+                    width: drawerWidth, 
                     boxSizing: 'border-box',
                     background: 'none',
                     overflow: 'hidden',
@@ -37,9 +36,7 @@ export default function Navigation () {
                         dispatch(
                             updateAppData({
                                 data: {
-                                    archives: {
-                                        openLeftNavigation: !open
-                                    }
+                                    archives: { openLeftNavigation: !open }
                                 }
                             })
                         )
@@ -52,16 +49,9 @@ export default function Navigation () {
                     ml={2}
                 >Fichiers</Typography>
             </Toolbar>
-            <MuiBox 
-                sx={{ 
-                    my: 1,
-                    mr: 1
-                }}>
-                    
-                <SearchInput
-                    
-                />
-            </MuiBox>
+                <MuiBox sx={{ my: 1, mr: 1 }}>              
+                    <SearchInput/>
+                </MuiBox>
             <Divider/>
             <MuiBox sx={{ overflow: 'hidden', display: 'flex', flexGrow: 1, }}>
                 <TreeDataView/>

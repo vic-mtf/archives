@@ -119,8 +119,8 @@ export default function ProfileMenu ({anchorEl, onClose}) {
                             size="medium"
                             onClick={() => {
                                 const customEvent = new CustomEvent(
-                                    '_deconnected',
-                                    { detail: { name: '_deconnected' }}
+                                    '_disconnected',
+                                    { detail: { name: '_disconnected' }}
                                 );
                                 document.getElementById('root')
                                 .dispatchEvent(customEvent);

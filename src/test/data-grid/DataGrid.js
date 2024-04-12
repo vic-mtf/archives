@@ -8,14 +8,10 @@ import React, { useCallback, useMemo, useState } from 'react';
 import propTypes from 'prop-types';
 import DataGridHeader from './header/DataGridHeader';
 import DataGridBody from './body/DataGridBody';
-import { sortFuncDate, sortFuncString, sortNumber } from '../../utils/sortDate';
+import { sortFuncDate, sortFuncString } from '../../utils/sortDate';
 
 export default function DataGrid (props) {
-    const {
-        columns: _columns,
-        rows,
-        checkbox
-    } = props;
+    const { columns: _columns, rows, checkbox } = props;
     const [page, setPage] = useState(0);
     const [rowsPerPage] = useState(100);
     const [selectedRows, setSelectedRows] = useState([]);
@@ -26,16 +22,16 @@ export default function DataGrid (props) {
     const pinningColumns = useMemo(() => _columns?.filter(col => col?.pin), [_columns]);
 
     const isSelectedRow = useCallback(
-        rowId => !!selectedRows.find(({id}) => id === rowId), 
+        rowId => !!selectedRows.find(({ id }) => id === rowId), 
         [selectedRows]
     );
 
     const handleToggleSelectedRow = useCallback(
         row => {
             if(row) {
-                const find = !!selectedRows.find(({id}) => id === row?.id);
+                const find = !!selectedRows.find(({ id }) => id === row?.id);
                 setSelectedRows(rows => find ? 
-                    rows.filter(({id}) => id !== row?.id) :
+                    rows.filter(({ id }) => id !== row?.id) :
                     [...rows, row]
                 );
             } else setSelectedRows(_rows => _rows?.length ? [] : rows);
@@ -74,8 +70,8 @@ export default function DataGrid (props) {
                 labelDisplayedRows={({ from, to, count }) => 
                    `${from} à ${to} sur ${count !== -1 ? count : `plus que ${to}`}`
                 }
-                backIconButtonProps={{size: 'small'}}
-                nextIconButtonProps={{size: 'small'}}
+                backIconButtonProps={{ size: 'small' }}
+                nextIconButtonProps={{ size: 'small' }}
                 count={count}
                 rowsPerPage={rowsPerPage}
                 page={page}
