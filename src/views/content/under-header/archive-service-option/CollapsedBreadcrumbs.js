@@ -5,7 +5,7 @@ import {
   Link,
   Box as MuiBox
 } from '@mui/material';
-import Typography from '../../../components/Typography';
+import Typography from '../../../../components/Typography';
 
 function handleClick(event) {
   event.preventDefault();

@@ -10,8 +10,7 @@ import {
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import { TableVirtuoso } from 'react-virtuoso';
-import useData from '../../../../data/useData';
-import Typography from '../../../../components/Typography';
+import Typography from '../../../components/Typography';
 
 
 const columns = [
@@ -44,7 +43,7 @@ const VirtuosoTableComponents = {
     <TableContainer component="div" {...props} ref={ref} />
   )),
   Table: (props) => (
-    <Table {...props} size="small" sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
+    <Table {...props}  sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
   ),
   TableHead,
   TableRow: ({ item: _item, ...props }) => <TableRow hover {...props} />,
@@ -99,8 +98,7 @@ function rowContent(_index, row) {
   );
 }
 
-export default function ListData() {
-    const data = useData(20);
+export default function TableData({ data }) {
     return (
         <TableVirtuoso
             data={data}
@@ -110,3 +108,7 @@ export default function ListData() {
         />
     );
 }
+
+TableData.defaultProps = {
+  data: [],
+};

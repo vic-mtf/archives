@@ -18,22 +18,23 @@ import channels from "../../utils/channels";
 import useGetData from '../../utils/useGetData';
 import { decrypt } from '../../utils/crypt';
 import { updateUser } from '../../redux/user';
+import { updateData } from '../../redux/data';
 
 export default function Cover ({ setOpened }) {
     const connected = useSelector(store => store.user.connected);
-    // const loaded = useSelector(store => store.data.loaded);
+    
     const dispatch = useDispatch();
     const [loading, getData] = useGetData({
-        onBeforeUpdate( data ) {
-            console.log(data);
+        onBeforeUpdate(docs) {
             setOpened(true);
+            dispatch(updateData({ data: { docs } }));
         }
-    }) 
+    }); 
+
     const handleFinish = useCallback(() => {
         if(connected) getData(true);
         else openSignIn();
     },[connected, getData]);
-
 
     useEffect(() => {
         const handleLogin = (event) => {
@@ -43,14 +44,14 @@ export default function Cover ({ setOpened }) {
                     ...decrypt(event.data),
                 };
                 dispatch(updateUser({ data }));
-                setOpened(true);
+                getData({urlProps: { token: data?.token }});
             }
         };
         SIGN_IN_CHANNEL.addEventListener("message", handleLogin);
         return () => {
             SIGN_IN_CHANNEL.removeEventListener("message", handleLogin);
         }
-    }, [dispatch, setOpened]);
+    }, [dispatch, setOpened, getData]);
 
     return (
         <Box

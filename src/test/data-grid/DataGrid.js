@@ -5,7 +5,7 @@ import {
     TablePagination
 } from '@mui/material';
 import React, { useCallback, useMemo, useState } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import DataGridHeader from './header/DataGridHeader';
 import DataGridBody from './body/DataGridBody';
 import { sortFuncDate, sortFuncString } from '../../utils/sortDate';
@@ -146,9 +146,9 @@ DataGrid.defaultProps = {
 }
 
 DataGrid.propTypes = {
-    pinClomns: propTypes.array,
-    onChangeCell: propTypes.func,
-    checkbox: propTypes.bool,
-    columns: propTypes.array,
-    rows: propTypes.array,
+    pinClomns: PropTypes.array,
+    onChangeCell: PropTypes.func,
+    checkbox: PropTypes.bool,
+    columns: PropTypes.array,
+    rows: PropTypes.array,
 }

@@ -10,13 +10,21 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
     '&.Mui-expanded': {
       fontWeight: theme.typography.fontWeightRegular,
     },
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    '&.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused': {
-      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
+    // '&:hover': {
+    //   backgroundColor: theme.palette.action.hover,
+    // },
+    '&.Mui-selected': {
+      backgroundColor: `var(--tree-view-bg-color, ${alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity)})`,
       color: 'var(--tree-view-color)',
       borderLeft: `2px solid ${theme.palette.primary.main}`,
+    },
+    '&.Mui-selected.Mui-focused': {
+      backgroundColor: `var(--tree-view-bg-color, ${alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity)})`,
+    },
+    '&.Mui-focused': {
+      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
+      color: 'var(--tree-view-color)',
+      // borderLeft: `2px solid ${theme.palette.primary.main}`,
     },
     [`& .${treeItemClasses.label}`]: {
       fontWeight: 'inherit',

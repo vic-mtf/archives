@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hookform/resolvers": "^3.3.4",
     "@mui/icons-material": "^5.11.0",
     "@mui/lab": "^5.0.0-alpha.116",
     "@mui/material": "^5.11.4",
@@ -15,6 +16,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "RichTreeView": "link:@mui/x-tree-view/RichTreeView",
     "TreeItem": "link:@mui/x-tree-view/TreeItem",
     "TreeView": "link:@mui/x-tree-view/TreeView",
     "animate.css": "^4.1.1",
@@ -22,19 +24,23 @@
     "axios-hooks": "^4.0.0",
     "crypto-js": "^4.1.1",
     "framer-motion": "^11.0.3",
+    "jszip": "^3.10.1",
     "lodash": "^4.17.21",
+    "notistack": "^3.0.1",
     "prop-types": "^15.8.1",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-data-grid": "^7.0.0-beta.22",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.3",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "react-timer-hook": "^3.0.5",
     "react-virtuoso": "^4.6.3",
     "redux-persist": "^6.0.0",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "NODE_OPTIONS=--max-old-space-size=8192 react-scripts start",
@@ -61,6 +67,6 @@
     ]
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.0"
+    "@faker-js/faker": "^8.4.1"
   }
 }

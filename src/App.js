@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from "react-redux";
 import { RouterProvider } from "react-router-dom";
+import { snackbarComponent } from './components/ReportComplete';
 import BoxGradient from "./components/BoxGradient";
 import router from "./router/router";
 import Cover from "./views/cover/Cover";
@@ -11,10 +12,7 @@ export default function App() {
 
   return (
     <BoxGradient>
-      {
-        (connected && opened) ? (<RouterProvider router={router} />) : 
-        (<Cover setOpened={setOpened} />) 
-      }
+      {(connected && opened) ? (<RouterProvider router={router} />) : (<Cover setOpened={setOpened} />)}
     </BoxGradient>
   );
 }

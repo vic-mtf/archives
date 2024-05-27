@@ -5,15 +5,20 @@ import store from './redux/store';import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ConfigAppWrapper from './utils/ConfigAppWrapper';
+import { snackbarComponents } from './components/ReportComplete';
+import { SnackbarProvider } from 'notistack';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
-      <ConfigAppWrapper>
-        <App/>
-      </ConfigAppWrapper>
+        <ConfigAppWrapper>
+          <SnackbarProvider Components={snackbarComponents}>
+            <App/>
+          </SnackbarProvider>
+        </ConfigAppWrapper>
     </ReduxProvider>
   </React.StrictMode>
 );

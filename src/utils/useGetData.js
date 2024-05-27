@@ -1,14 +1,13 @@
 import { useCallback } from "react"
 import useAxios from "./useAxios";
 import { useSelector } from "react-redux";
-// import { updateData } from "../redux/data";
 
 export const useGetUrlData = () => {
     const token = useSelector(store => store.user.token);
-    const getUrlData = useCallback(({token: tk}) => ({
+    const getUrlData = useCallback(({ token: tk }) => ({
       url: `/api/stuff/validate`,
       headers: {
-        Authorization: `Bearer ${token || tk}`
+        Authorization: `Bearer ${ token || tk }`
       }
     }),[token]);
     return getUrlData;
@@ -17,7 +16,6 @@ export const useGetUrlData = () => {
 const useGetData = ({ urlProps, onBeforeUpdate, onError }) => {
   const getUrlData = useGetUrlData();
   const [{ loading }, refetch] = useAxios(null, { manual: true });
-  // const dispatch = useDispatch();
   const onBefore = useCallback(data => 
       typeof onBeforeUpdate === 'function' ?  onBeforeUpdate(data) : data,
       [onBeforeUpdate]
@@ -27,16 +25,11 @@ const useGetData = ({ urlProps, onBeforeUpdate, onError }) => {
       [onError]
   );
   const getData = useCallback((data) => 
-      refetch(getUrlData({...(urlProps || data?.urlProps) }))
+      refetch(getUrlData({ ...(urlProps || data?.urlProps) }))
       .then(({ data }) => {
-        onBefore(data)
-        // dispatch(
-        //   updateData({
-        //     data: onBefore({ [key]: data })
-        //   })
-        // );
+        onBefore(data);
       }).catch(onBeforeError), 
-    [getUrlData, refetch, onBefore, urlProps, onBeforeError]);
+    [getUrlData, refetch, onBefore, urlProps, onBeforeError ]);
 
   return [loading, getData];
 };

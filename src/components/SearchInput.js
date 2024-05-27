@@ -8,13 +8,8 @@ const Search = styled('div')(({ theme }) => ({
     '&:hover': {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
   }));
   
   const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -29,15 +24,12 @@ const Search = styled('div')(({ theme }) => ({
   
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
+    width: '100%',
     '& .MuiInputBase-input': {
+      display: 'flex',
       padding: theme.spacing(.5, .5, .5, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '50ch',
-      },
+      paddingLeft: `calc(1em + ${theme.spacing(3)})`,
+      transition: theme.transitions.create('width')
     },
   }));
 
@@ -49,8 +41,8 @@ export default function SearchInput (props) {
               <SearchRoundedIcon fontSize="small" />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Chercher…"
-              inputProps={{ 'aria-label': 'chercher' }}
+              placeholder="Rechercher..."
+              inputProps={{ 'aria-label': 'search' }}
               size="small"
               {...props}
             />

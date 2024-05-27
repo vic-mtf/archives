@@ -1,6 +1,6 @@
 import React from "react";
 // import MoreOptionsButton from "./MoreOptionsButton";
-import options from "./options";
+import options from "./headerOptions";
 import IconButton from "../../../components/IconButton";
 import { createTheme, ThemeProvider, Tooltip, Box as MuiBox } from "@mui/material";
 

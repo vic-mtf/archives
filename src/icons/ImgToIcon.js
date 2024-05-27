@@ -1,6 +1,6 @@
 import React from 'react';
 import defaultIcon from './icons8-info-64.png';
-import propType from 'prop-types';
+import PropType from 'prop-types';
 
 export default function ImgToIcon( {src, uri, size, alt, ...otherProps}) {
     const srcUrl = src || uri || defaultIcon;
@@ -24,7 +24,7 @@ ImgToIcon.defaultProps = {
 };
 
 ImgToIcon.propTypes = {
-    size: propType.number,
-    src: propType.string,
-    uri: propType.string,
+    size: PropType.number,
+    src: PropType.string,
+    uri: PropType.string,
 };

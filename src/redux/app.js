@@ -15,10 +15,7 @@ const app = createSlice({
         blur: 15,
         users: [],
         user: null,
-        stayConnected: false,
-        archives: {
-            openLeftNavigation: true,
-        },
+        stayConnected: false
     },
     reducers: {
         updateAppData(state, actions) {
