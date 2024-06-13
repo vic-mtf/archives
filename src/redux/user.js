@@ -4,29 +4,30 @@ import storage from "redux-persist/lib/storage/session";
 import deepMerge from "../utils/deepMerge";
 
 const user = createSlice({
-    name: 'user',
-    initialState: {
-        connected: false,
-        //image: null,
+  name: "user",
+  initialState: {
+    connected: false,
+    //image: null,
+  },
+  reducers: {
+    updateUser(state, actions) {
+      const { data } = actions.payload;
+      const states = deepMerge(state, data);
+      Object.keys(states).forEach((key) => {
+        state[key] = states[key];
+      });
     },
-    reducers: {
-        updateUser(state, actions) {
-            const { data } = actions.payload;
-            const states = deepMerge(state, data);
-            Object.keys(states).forEach(key => {
-                state[key] = states[key];
-            });
-        },
-        disconnected (state) {
-            state.connected = false;
-        }
-    }
+    disconnected(state) {
+      state.connected = false;
+    },
+  },
 });
 
 export const { disconnected, updateUser } = user.actions;
-export default persistReducer({
+export default persistReducer(
+  {
     storage,
-    key:'__ROOT_GEID_USER_CONFIG_APP'
-}, 
-user.reducer
+    key: "__ROOT_GEID_USER_CONFIG_APP",
+  },
+  user.reducer
 );

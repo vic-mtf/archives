@@ -1,4 +1,4 @@
-html{
+html {
   background: #eee5;
 }
 body {
@@ -17,30 +17,30 @@ body {
 
 @keyframes rgb-grandient {
   0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
 /* Chrome */
 input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button { 
--webkit-appearance: none;
-margin:0;
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Opéra*/
 input::-o-inner-spin-button,
-input::-o-outer-spin-button { 
--o-appearance: none;
-margin:0
+input::-o-outer-spin-button {
+  -o-appearance: none;
+  margin: 0;
 }

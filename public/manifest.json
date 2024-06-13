@@ -57,8 +57,6 @@
       "type": "image/png",
       "sizes": "100x100"
     }
-    
-    
   ],
   "start_url": ".",
   "display": "standalone",

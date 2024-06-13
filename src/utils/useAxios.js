@@ -1,9 +1,16 @@
 import axios from "axios";
 import { makeUseAxios } from "axios-hooks";
-import axiosConfig from '../configs/axios-config.json';
 
-const useAxios = makeUseAxios({
-    axios: axios.create(axiosConfig)
-});
+const _CONFIG = {
+  baseURL: import.meta.env.BASE_URL,
+  responseType: import.meta.env.RESPONSE_TYPE,
+  maxContentLength: import.meta.env.MAX_CONTENT_LENGTH,
+  proxy: {
+    protocol: import.meta.env.PROXY_PROTOCOL,
+  },
+};
+
+const _AXIOS = axios.create(_CONFIG);
+const useAxios = makeUseAxios(_AXIOS);
 
 export default useAxios;

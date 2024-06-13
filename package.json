@@ -1,7 +1,14 @@
 {
   "name": "geid-archives-app",
-  "version": "1.0.0",
   "private": true,
+  "version": "1.1.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -9,64 +16,37 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/lab": "^5.0.0-alpha.116",
     "@mui/material": "^5.11.4",
-    "@mui/x-data-grid": "^5.17.20",
-    "@mui/x-data-grid-pro": "^5.17.22",
-    "@mui/x-tree-view": "^6.17.0",
     "@reduxjs/toolkit": "^1.9.1",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
     "RichTreeView": "link:@mui/x-tree-view/RichTreeView",
-    "TreeItem": "link:@mui/x-tree-view/TreeItem",
-    "TreeView": "link:@mui/x-tree-view/TreeView",
-    "animate.css": "^4.1.1",
     "axios": "^1.2.2",
     "axios-hooks": "^4.0.0",
     "crypto-js": "^4.1.1",
     "framer-motion": "^11.0.3",
-    "jszip": "^3.10.1",
     "lodash": "^4.17.21",
     "notistack": "^3.0.1",
     "prop-types": "^15.8.1",
     "query-string": "^8.1.0",
-    "react": "^18.2.0",
-    "react-data-grid": "^7.0.0-beta.22",
-    "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.3",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
-    "react-timer-hook": "^3.0.5",
     "react-virtuoso": "^4.6.3",
     "redux-persist": "^6.0.0",
+    "@mui/x-tree-view": "^6.17.0",
     "web-vitals": "^2.1.0",
-    "yup": "^1.4.0"
-  },
-  "scripts": {
-    "start": "NODE_OPTIONS=--max-old-space-size=8192 react-scripts start",
-    "build": "rm -r build.zip build;PUBLIC_URL=/apps/archives react-scripts build;zip -r build.zip build && scp build.zip root@137.184.96.252:server/GEID_Valise/public/geid-platform/archives",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "yup": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1"
+    "@faker-js/faker": "^8.4.1",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "vite": "^5.2.0"
   }
 }
