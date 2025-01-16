@@ -5,8 +5,10 @@ import openNewWindow from "../../utils/openNewWindow";
 export default function openSignIn() {
   const localUser = store.getState().app.user;
   const userSave = localUser && decrypt(localUser);
-  const win = openNewWindow({
-    url: `/account/signin/${userSave ? "userfound" : "useremail"}`,
-  });
+  const url = new URL(
+    `/account/signin/${userSave ? "userfound" : "useremail"}`,
+    import.meta.env.VITE_SERVER_BASE_URL
+  );
+  const win = openNewWindow({ url });
   if (win) win.name = "signin";
 }
