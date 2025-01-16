@@ -24,10 +24,19 @@ export default function openNewWindow(args = _args) {
   const options = Object.keys(otherProps)
     .map((key) => `${key}=${otherProps[key]}`)
     .join(", ");
-  const uri = `${BASE_URL}${url}`.trim();
-  const wd = window.open(uri, target, options);
+  const uri = getFullUrl(url);
+  const win = window.open(uri, target, options);
   window.addEventListener("beforeunload", () => {
-    if (!wd.closed) wd.close();
+    if (!win.closed) win?.close();
   });
-  return wd;
+  return win;
 }
+
+const getFullUrl = (input) => {
+  try {
+    const url = new URL(input);
+    return url.href;
+  } catch (e) {
+    return `${BASE_URL}/${input.replace(/^\/+/, "")}`;
+  }
+};
