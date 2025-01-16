@@ -1,7 +1,6 @@
-import { Box, Tooltip } from "@mui/material";
+import { Box, Tooltip, IconButton } from "@mui/material";
 import React, { useRef, useState } from "react";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
-import IconButton from "../../../components/IconButton";
 import AppsMenu from "../AppsMenu";
 
 export default function AppsMenuButton() {

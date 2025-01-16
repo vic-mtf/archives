@@ -7,14 +7,14 @@ import {
   Box as MuiBox,
   CircularProgress,
   Divider,
+  Typography,
 } from "@mui/material";
-import Typography from "../../components/Typography";
 import _logo_geid from "../../assets/geid_logo_blue_without_title.webp";
 import SwingAnimation from "../../components/SwingAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import openSignIn from "./openSignIn";
 import channels from "../../utils/channels";
-import useGetData from "../../utils/useGetData";
+import useGetData from "../../hooks/useGetData";
 import { decrypt } from "../../utils/crypt";
 import { updateUser } from "../../redux/user";
 import { updateData } from "../../redux/data";

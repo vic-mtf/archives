@@ -6,11 +6,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import { TableVirtuoso } from "react-virtuoso";
-import Typography from "../../../components/Typography";
+import PropTypes from "prop-types";
 
 const columns = [
   {
@@ -18,10 +19,10 @@ const columns = [
     dataKey: "designation",
     maxWidth: 400,
   },
-  {
-    label: "Type",
-    dataKey: "type",
-  },
+  // {
+  //   label: "Type",
+  //   dataKey: "type",
+  // },
   {
     label: "Date",
     dataKey: "createdAt",
@@ -29,18 +30,21 @@ const columns = [
   },
   {
     label: "Numéro de classement",
-    dataKey: "numeroDeClassement",
+    dataKey: "classNumber",
   },
   {
     label: "Numéro de Reference",
-    dataKey: "numeroDeReference",
+    dataKey: "refNumber",
   },
 ];
+const Scroller = (props, ref) => (
+  <TableContainer component='div' {...props} ref={ref} />
+);
+const CustomTableRow = (props) => <TableRow hover {...props} />;
+const CustomTableBody = (props, ref) => <TableBody {...props} ref={ref} />;
 
 const VirtuosoTableComponents = {
-  Scroller: React.forwardRef((props, ref) => (
-    <TableContainer component='div' {...props} ref={ref} />
-  )),
+  Scroller: React.forwardRef(Scroller),
   Table: (props) => (
     <Table
       {...props}
@@ -48,10 +52,8 @@ const VirtuosoTableComponents = {
     />
   ),
   TableHead,
-  TableRow: ({ item: _item, ...props }) => <TableRow hover {...props} />,
-  TableBody: React.forwardRef((props, ref) => (
-    <TableBody {...props} ref={ref} />
-  )),
+  TableRow: CustomTableRow,
+  TableBody: React.forwardRef(CustomTableBody),
 };
 
 function fixedHeaderContent() {
@@ -99,7 +101,7 @@ function rowContent(_index, row) {
   );
 }
 
-export default function TableData({ data }) {
+export default function TableData({ data = [] }) {
   return (
     <TableVirtuoso
       data={data}
@@ -110,6 +112,6 @@ export default function TableData({ data }) {
   );
 }
 
-TableData.defaultProps = {
-  data: [],
+TableData.propTypes = {
+  data: PropTypes.array,
 };

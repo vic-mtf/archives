@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import TableCellInput from "./TableCellInput";
 
 export default function DataGridBody({
-  rows: _rows,
+  rows: _rows = [],
   checkbox,
   columns,
   isSelectedRow,
@@ -65,10 +65,10 @@ export default function DataGridBody({
   );
 }
 
-DataGridBody.defaultProps = {
-  rows: [],
-};
-
 DataGridBody.propTypes = {
   rows: PropTypes.array,
+  checkbox: PropTypes.bool,
+  columns: PropTypes.array,
+  isSelectedRow: PropTypes.bool,
+  handleToggleSelectedRow: PropTypes.func,
 };

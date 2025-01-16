@@ -5,7 +5,7 @@ const customProps = ["openLeft", "openRight", "drawerWidth"];
 
 const Main = styled("main", {
   shouldForwardProp: (prop) => !customProps.includes(prop),
-})(({ theme, openLeft, openRight, drawerWidth }) => ({
+})(({ theme, openLeft, openRight, drawerWidth = 0 }) => ({
   overflow: "hidden",
   flexGrow: 1,
   flexShrink: 1,
@@ -26,13 +26,9 @@ const Main = styled("main", {
   }),
 }));
 
-Main.defaultProps = {
-  open: true,
-  drawerWidth: 0,
-};
-
 Main.propTypes = {
-  open: PropTypes.bool,
+  openLeft: PropTypes.bool,
+  openRight: PropTypes.bool,
   drawerWidth: PropTypes.number,
 };
 

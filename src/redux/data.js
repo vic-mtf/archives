@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import persistReducer from "redux-persist/es/persistReducer";
-import storage from "redux-persist/lib/storage/session";
 import deepMerge from "../utils/deepMerge";
 
 const data = createSlice({
@@ -24,7 +22,6 @@ const data = createSlice({
     updateData(state, actions) {
       const { data } = actions.payload;
       const states = deepMerge(state, data);
-      console.log(states);
       Object.keys(states).forEach((key) => {
         state[key] = states[key];
       });
@@ -38,10 +35,4 @@ const data = createSlice({
 });
 
 export const { updateData, removeData } = data.actions;
-export default persistReducer(
-  {
-    storage,
-    key: "__ROOT_GEID_DATA_ARCHIVES_APP",
-  },
-  data.reducer
-);
+export default data.reducer;

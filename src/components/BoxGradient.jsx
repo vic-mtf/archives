@@ -1,9 +1,8 @@
 import { Box, styled } from "@mui/material";
 
-const BoxGradient = styled(
-  Box,
-  {}
-)(({ colors }) => ({
+const BoxGradient = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "colors",
+})(({ colors = ["#0095c940", "#fff24b40", "#db383240"] }) => ({
   display: "flex",
   flex: 1,
   height: "100%",
@@ -23,7 +22,3 @@ const BoxGradient = styled(
 }));
 
 export default BoxGradient;
-
-BoxGradient.defaultProps = {
-  colors: ["#0095c940", "#fff24b40", "#db383240"],
-};

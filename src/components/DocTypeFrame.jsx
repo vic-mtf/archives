@@ -8,8 +8,9 @@ import {
   Paper,
   Popper,
   Stack,
+  Typography,
 } from "@mui/material";
-import Typography from "./Typography";
+
 import { useSelector } from "react-redux";
 
 export default function DocTypeFrame({

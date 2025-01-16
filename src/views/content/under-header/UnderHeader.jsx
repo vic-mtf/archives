@@ -11,15 +11,19 @@ export default function UnderHeader() {
     () => location.state?.navigation?.tabs?.option,
     [location.state?.navigation?.tabs?.option]
   );
-  const Options = useMemo(() => headers[option] || React.Fragment, [option]);
+  const Options = useMemo(() => headers[option], [option]);
 
   return (
-    <Toolbar variant='dense'>
-      <NavigationMenuButton
-        hide
-        IconProps={{ sx: { transform: "rotate(-180deg)" } }}
-      />
-      <Options />
-    </Toolbar>
+    <>
+      {Options && (
+        <Toolbar>
+          <NavigationMenuButton
+            hide
+            IconProps={{ sx: { transform: "rotate(-180deg)" } }}
+          />
+          <Options />
+        </Toolbar>
+      )}
+    </>
   );
 }

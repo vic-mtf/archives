@@ -13,7 +13,7 @@ export default function Content() {
     <Main openLeft={openLeft} openRight={true} drawerWidth={drawerWidth}>
       <Toolbar variant='dense' />
       <UnderHeader />
-      <Divider />
+
       <MuiBox overflow='hidden' display='flex' flexShrink={0} flex={1}>
         <DisplayData />
       </MuiBox>

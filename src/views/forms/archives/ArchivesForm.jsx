@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import Button from "../../../components/Button";
-import Typography from "../../../components/Typography";
-import useAxios from "../../../utils/useAxios";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { Button, Typography } from "@mui/material";
+import useAxios from "../../../hooks/useAxios";
 import { useSnackbar } from "notistack";
 import { useSelector } from "react-redux";
 import textStyle from "../../../styles/text.module.css";

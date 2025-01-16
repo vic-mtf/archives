@@ -1,12 +1,11 @@
 import { useEffect, useMemo } from "react";
-import { Toolbar, Box as MuiBox, Divider } from "@mui/material";
+import { Toolbar, Box as MuiBox, Divider, Typography } from "@mui/material";
 import TreeArchiveManagementView from "./tree-data-view/TreeArchiveManagementView";
 import SearchInput from "../../components/SearchInput";
-import Typography from "../../components/Typography";
 import { useSelector } from "react-redux";
 import TabsOption from "./tabs-option/TabsOption";
 import NavigationMenuButton from "./NavigationMenuButton";
-import useNavigateSetState from "../../utils/useNavigateSetState";
+import useNavigateSetState from "../../hooks/useNavigateSetState";
 import { useLocation } from "react-router-dom";
 import CustomDrawer from "./CustomDrawer";
 
@@ -36,18 +35,17 @@ export default function LeftNavigation() {
   return (
     <CustomDrawer open={open}>
       <Toolbar variant='dense' />
-      <Toolbar variant='dense'>
+      <Toolbar>
         <NavigationMenuButton />
         <Typography fontWeight='bold'>Fichiers</Typography>
       </Toolbar>
-      <Divider />
       <MuiBox>
         <TabsOption />
-        <Toolbar variant='dense'>
+        <Toolbar>
           <SearchInput />
         </Toolbar>
       </MuiBox>
-      <Divider />
+
       <MuiBox
         overflow='hidden'
         display='flex'

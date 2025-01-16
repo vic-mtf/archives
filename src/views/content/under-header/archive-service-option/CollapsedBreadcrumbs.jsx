@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import { Breadcrumbs, Link, Box as MuiBox } from "@mui/material";
-import Typography from "../../../../components/Typography";
+import { Breadcrumbs, Link, Box as MuiBox, Typography } from "@mui/material";
 
 function handleClick(event) {
   event.preventDefault();
@@ -18,7 +17,7 @@ export default function CollapsedBreadcrumbs() {
         mx: 1,
       }}>
       <Breadcrumbs maxItems={5} aria-label='breadcrumb'>
-        <Link underline='hover' color='inherit' href='#'>
+        {/* <Link underline='hover' color='inherit' href='#'>
           Directions
         </Link>
         <Link underline='hover' color='inherit' href='#'>
@@ -30,7 +29,7 @@ export default function CollapsedBreadcrumbs() {
         <Link underline='hover' color='inherit' href='#'>
           Documents
         </Link>
-        <Typography color='text.primary'>Dantic</Typography>
+        <Typography color='text.primary'>Dantic</Typography> */}
       </Breadcrumbs>
     </MuiBox>
   );

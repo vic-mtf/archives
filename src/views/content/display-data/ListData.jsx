@@ -1,23 +1,22 @@
-import * as React from "react";
+import React from "react";
 import {
   ListSubheader,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Box as MuiBox,
+  Box,
+  Typography,
 } from "@mui/material";
 import FolderZipOutlinedIcon from "@mui/icons-material/FolderZipOutlined";
 import WorkHistoryOutlinedIcon from "@mui/icons-material/WorkHistoryOutlined";
 import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined";
 import CollapseListItemButton from "../../../components/CollapseListItemButton";
-import Typography from "../../../components/Typography";
 import formatDate from "../../../utils/formatTime";
 import timeElapsed from "../../../utils/timeElapsed";
 import capStr from "../../../utils/capStr";
-
+import PropTypes from "prop-types";
 export default function ListData({ doc }) {
-  console.log(doc);
   return (
     <List
       sx={{ width: "100%" }}
@@ -28,9 +27,9 @@ export default function ListData({ doc }) {
         <ListSubheader
           component='div'
           id='doc-list-information'
-          sx={{ py: 0.5, display: "flex" }}>
-          <MuiBox flexGrow={1}>{doc?.designation}</MuiBox>
-          <MuiBox>{capStr(timeElapsed(doc?.createdAt))}</MuiBox>
+          sx={{ py: 0.5, display: "flex", bgcolor: "background.default" }}>
+          <Box flexGrow={1}>{doc?.designation}</Box>
+          <Box>{capStr(timeElapsed(doc?.createdAt))}</Box>
         </ListSubheader>
       }>
       <ListItem title='Dossier'>
@@ -78,3 +77,7 @@ export default function ListData({ doc }) {
     </List>
   );
 }
+
+ListData.propTypes = {
+  doc: PropTypes.object,
+};

@@ -1,16 +1,17 @@
-import React, { useLayoutEffect, useMemo, useState } from "react";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
+import { useLayoutEffect, useMemo, useState } from "react";
 import {
   FormControl,
   FormHelperText,
   MenuItem,
   Paper,
   Stack,
+  Typography,
+  TextField,
+  Autocomplete,
+  styled,
 } from "@mui/material";
-import Typography from "../../../components/Typography";
 import { useSelector } from "react-redux";
-import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 
 export default function Typology({
   type,
@@ -78,7 +79,7 @@ export default function Typology({
         />
         {funcEmptyError && (
           <FormHelperText sx={{ color: (theme) => theme.palette.error.main }}>
-            S'il vous plaît sélectionner un élément.
+            {errorMessage}
           </FormHelperText>
         )}
       </FormControl>
@@ -93,7 +94,7 @@ export default function Typology({
         />
         {roleEmptyError && (
           <FormHelperText sx={{ color: (theme) => theme.palette.error.main }}>
-            S'il vous plaît sélectionner un élément.
+            {errorMessage}
           </FormHelperText>
         )}
       </FormControl>
@@ -101,40 +102,48 @@ export default function Typology({
   );
 }
 
-const CutomAutocomplete = styled(Autocomplete)(() => ({}));
+const errorMessage = "S'il vous plaît sélectionner un élément.";
+const CutomAutocomplete = styled(() => (
+  <Autocomplete
+    size='small'
+    fullWidth
+    noOptionsText={<Typography color='red'>Aucun élement</Typography>}
+    renderOption={(params) => (
+      <MenuItem {...params} sx={{ fontSize: 14 }}>
+        {params.key}
+      </MenuItem>
+    )}
+    PaperComponent={(params) => (
+      <Paper
+        sx={{
+          bgcolor: (theme) =>
+            theme.palette.background.paper + theme.customOptions.opacity,
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          backdropFilter: (theme) => `blur(${theme.customOptions.blur})`,
+        }}
+        {...params}
+      />
+    )}
+    renderInput={(params) => (
+      <TextField
+        {...params}
+        label='Type'
+        size='small'
+        margin='normal'
+        // error={funcEmptyError}
+        InputProps={{
+          ...params.InputProps,
+          sx: { fontSize: 14 },
+          endAdornment: params.InputProps.endAdornment,
+        }}
+      />
+    )}
+  />
+))();
 
-CutomAutocomplete.defaultProps = {
-  size: "small",
-  fullWidth: true,
-  noOptionsText: <Typography color='red'>Aucun élement</Typography>,
-  renderOption: (params) => (
-    <MenuItem {...params} sx={{ fontSize: 14 }}>
-      {params.key}
-    </MenuItem>
-  ),
-  PaperComponent: (params) => (
-    <Paper
-      sx={{
-        bgcolor: (theme) =>
-          theme.palette.background.paper + theme.customOptions.opacity,
-        border: (theme) => `1px solid ${theme.palette.divider}`,
-        backdropFilter: (theme) => `blur(${theme.customOptions.blur})`,
-      }}
-      {...params}
-    />
-  ),
-  renderInput: (params) => (
-    <TextField
-      {...params}
-      label='Type'
-      size='small'
-      margin='normal'
-      // error={funcEmptyError}
-      InputProps={{
-        ...params.InputProps,
-        sx: { fontSize: 14 },
-        endAdornment: params.InputProps.endAdornment,
-      }}
-    />
-  ),
+Typology.propTypes = {
+  type: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  subType: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  externalTypeError: PropTypes.bool,
+  externalSubTypeError: PropTypes.bool,
 };

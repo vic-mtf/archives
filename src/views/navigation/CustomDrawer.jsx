@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 export const drawerWidth = 350;
 
-export default function CustomDrawer({ open, children, direction }) {
+export default function CustomDrawer({
+  direction = "left",
+  open = false,
+  children = null,
+}) {
   return (
     <Drawer
       variant='persistent'
@@ -19,20 +23,13 @@ export default function CustomDrawer({ open, children, direction }) {
           overflow: "hidden",
         },
       }}>
-      {" "}
       {children}
     </Drawer>
   );
 }
 
-CustomDrawer.defaultProps = {
-  direction: "left",
-  open: false,
-  children: null,
-};
-
 CustomDrawer.propTypes = {
-  direction: PropTypes.oneOf(["left", "right"]).isRequired,
-  open: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
+  direction: PropTypes.oneOf(["left", "right"]),
+  open: PropTypes.bool,
+  children: PropTypes.node,
 };

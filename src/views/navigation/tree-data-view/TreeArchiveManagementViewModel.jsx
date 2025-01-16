@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useEffect } from "react";
+import { useMemo, useRef, useEffect } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { TreeView } from "@mui/x-tree-view/TreeView";
@@ -21,10 +21,6 @@ export default function TreeArchiveManagementView() {
       }),
     [docs]
   );
-
-  useEffect(() => {
-    console.log(apiRef);
-  }, []);
 
   return (
     <TreeView

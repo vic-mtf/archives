@@ -12,12 +12,12 @@ import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import PropTypes from "prop-types";
 
 export default function CollapseListItemButton({
-  startOpenIcon,
-  startCloseIcon,
-  endOpenIcon,
-  endCloseIcon,
-  getPrimaryText,
-  getButtonChildren,
+  startOpenIcon = React.createElement(RemoveOutlinedIcon),
+  startCloseIcon = React.createElement(AddCircleOutlineOutlinedIcon),
+  endOpenIcon = React.createElement(ExpandLess),
+  endCloseIcon = React.createElement(ExpandMore),
+  getPrimaryText = null,
+  getButtonChildren = null,
   children,
 }) {
   const [open, setOpen] = React.useState(true);
@@ -52,16 +52,6 @@ export default function CollapseListItemButton({
   );
 }
 
-CollapseListItemButton.defaultProps = {
-  startOpenIcon: React.createElement(RemoveOutlinedIcon),
-  startCloseIcon: React.createElement(AddCircleOutlineOutlinedIcon),
-  endOpenIcon: React.createElement(ExpandLess),
-  endCloseIcon: React.createElement(ExpandMore),
-  getPrimaryText: null,
-  getButtonChildren: null,
-  children: null,
-};
-
 CollapseListItemButton.propTypes = {
   startOpenIcon: PropTypes.element,
   startCloseIcon: PropTypes.element,
@@ -69,5 +59,5 @@ CollapseListItemButton.propTypes = {
   endCloseIcon: PropTypes.element,
   getPrimaryText: PropTypes.func,
   getButtonChildren: PropTypes.func,
-  // children: PropTypes.array([PropTypes.element, PropTypes.node]),
+  children: PropTypes.node,
 };

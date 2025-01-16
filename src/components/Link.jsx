@@ -1,15 +1,10 @@
-import { styled, Typography as MuiTypography } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 
-const Link = styled(MuiTypography)(({ theme }) => ({
+const Link = styled((props) => (
+  <Typography variant='body2' component='a' fontWeight='bold' {...props} />
+))(({ theme }) => ({
   textDecoration: "none",
   color: theme.palette.primary.main,
 }));
-
-Link.defaultProps = {
-  variant: "body2",
-  component: "a",
-  // fontSize:13,
-  fontWeight: "bold",
-};
 
 export default Link;

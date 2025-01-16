@@ -1,10 +1,8 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { Button, DialogTitle, Dialog } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useSelector } from "react-redux";
-import useAxios from "../../../utils/useAxios";
-import Button from "../../../components/Button";
-import Dialog from "../../../components/Dialog";
-import { DialogTitle } from "@mui/material";
+import useAxios from "../../../hooks/useAxios";
 import FormContent from "./FormContent";
 
 export default function ValidateForm() {
@@ -26,6 +24,7 @@ export default function ValidateForm() {
         ...fields,
         id: doc,
       };
+
       const timer = window.setTimeout(() => {
         refresh({ data })
           .then(() => {
@@ -45,20 +44,20 @@ export default function ValidateForm() {
         message: "Validation du document en cours...",
         action: ({ id }) => (
           <Button
-            children='Annuler'
             color='inherit'
             onClick={() => {
               cancel();
               window.clearTimeout(timer);
               closeSnackbar(id);
-            }}
-          />
+            }}>
+            Annuler
+          </Button>
         ),
         autoHideDuration: null,
       });
       setDoc(null);
     },
-    [cancel, closeSnackbar, enqueueSnackbar, refresh]
+    [cancel, closeSnackbar, enqueueSnackbar, refresh, doc]
   );
 
   useEffect(() => {

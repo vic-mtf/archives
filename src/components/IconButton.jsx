@@ -1,7 +1,6 @@
 import { styled, ToggleButton } from "@mui/material";
 
 const IconButton = styled(ToggleButton)(() => ({
-  // textTransform: 'none',
   border: "none",
   "&:disabled": {
     border: "none",
@@ -9,7 +8,3 @@ const IconButton = styled(ToggleButton)(() => ({
 }));
 
 export default IconButton;
-IconButton.defaultProps = {
-  size: "small",
-  value: "",
-};

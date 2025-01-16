@@ -1,12 +1,16 @@
 import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
-import IconButton from "../../components/IconButton";
+import { IconButton } from "@mui/material";
 import { updateData } from "../../redux/data";
 import PropTypes from "prop-types";
 import capStr from "../../utils/capStr";
 
-export default function NavigationMenuButton({ hide, IconProps, direction }) {
+export default function NavigationMenuButton({
+  hide = false,
+  IconProps = {},
+  direction = "left",
+}) {
   const dir = useMemo(() => `open${capStr(direction)}`, [direction]);
   const open = useSelector((store) => store.data.navigation[dir]);
   const dispatch = useDispatch();
@@ -24,14 +28,8 @@ export default function NavigationMenuButton({ hide, IconProps, direction }) {
   );
 }
 
-NavigationMenuButton.defaultProps = {
-  hide: false,
-  IconProps: {},
-  direction: "left",
-};
-
 NavigationMenuButton.propTypes = {
   hide: PropTypes.bool,
   IconProps: PropTypes.object,
-  direction: PropTypes.oneOf(["left", "right"]).isRequired,
+  direction: PropTypes.oneOf(["left", "right"]),
 };

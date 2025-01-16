@@ -5,8 +5,13 @@ import DataGridHeader from "./header/DataGridHeader";
 import DataGridBody from "./body/DataGridBody";
 import { sortFuncDate, sortFuncString } from "../../utils/sortDate";
 
-export default function DataGrid(props) {
-  const { columns: _columns, rows, checkbox } = props;
+export default function DataGrid({
+  // pinClomns = [],
+  // onChangeCell = null,
+  checkbox = false,
+  columns: _columns = [],
+  rows = [],
+}) {
   const [page, setPage] = useState(0);
   const [rowsPerPage] = useState(100);
   const [selectedRows, setSelectedRows] = useState([]);
@@ -143,14 +148,6 @@ export default function DataGrid(props) {
     </Paper>
   );
 }
-
-DataGrid.defaultProps = {
-  pinClomns: [],
-  onChangeCell: null,
-  checkbox: false,
-  columns: [],
-  rows: [],
-};
 
 DataGrid.propTypes = {
   pinClomns: PropTypes.array,

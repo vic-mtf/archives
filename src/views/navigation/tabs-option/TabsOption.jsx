@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { BottomNavigationAction, BottomNavigation } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import tabs from "./tabs";
-import useNavigateSetState from "../../../utils/useNavigateSetState";
+import useNavigateSetState from "../../../hooks/useNavigateSetState";
 
 export default function TabsOption() {
   const location = useLocation();
@@ -22,7 +22,7 @@ export default function TabsOption() {
 
   return (
     <BottomNavigation
-      sx={{ width: "100%" }}
+      sx={{ width: "100%", bgcolor: "background.default" }}
       value={value}
       onChange={handleChange}>
       {tabs.map(({ icon, label, id }) => (
@@ -31,8 +31,12 @@ export default function TabsOption() {
           value={id}
           key={id}
           label={label}
+          showLabel
           sx={{
             textTransform: "none",
+            "& span": {
+              fontSize: "10.5px!important",
+            },
           }}
         />
       ))}

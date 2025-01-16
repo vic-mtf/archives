@@ -1,12 +1,12 @@
 import React from "react";
-import Button from "../../../components/Button";
-import Typography from "../../../components/Typography";
 import InputsDoc from "./InputsDoc";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
+  Typography,
+  Button,
 } from "@mui/material";
 
 export default function FormContent({

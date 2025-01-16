@@ -1,8 +1,6 @@
 import InputControl from "../../../components/InputControl";
-
+import PropTypes from "prop-types";
 export default function InputFields({ register, formState: { errors } }) {
-  console.log(errors);
-
   return (
     <>
       {fields.map(({ name, label }) => (
@@ -19,6 +17,13 @@ export default function InputFields({ register, formState: { errors } }) {
     </>
   );
 }
+
+InputFields.propTypes = {
+  register: PropTypes.func.isRequired,
+  formState: PropTypes.shape({
+    errors: PropTypes.object,
+  }).isRequired,
+};
 
 const fields = [
   {

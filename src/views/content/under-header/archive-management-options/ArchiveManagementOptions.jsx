@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import Button from "../../../../components/Button";
+import { Button } from "@mui/material";
 import managementOptions from "./managementOptions";
 import { useSelector } from "react-redux";
 
@@ -25,13 +25,13 @@ export default function ArchiveManagementOptions() {
           {option.type === "button" && (
             <Button
               startIcon={React.createElement(option.icon)}
-              children={option.label}
               onClick={option.action}
               color='inherit'
               sx={{ mr: 2 }}
               variant='outlined'
-              disabled={disabledElements(option.activeKeys)}
-            />
+              disabled={disabledElements(option.activeKeys)}>
+              {option.label}
+            </Button>
           )}
         </React.Fragment>
       ))}

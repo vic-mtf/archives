@@ -1,7 +1,7 @@
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
+//import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
 import store from "../../../../redux/store";
 
 const managementOptions = [
@@ -33,14 +33,14 @@ const managementOptions = [
     activeKeys: ["isOnly"],
     action() {},
   },
-  {
-    label: "Télécharger",
-    id: "download",
-    type: "button",
-    icon: CloudUploadOutlinedIcon,
-    activeKeys: ["isOnly"],
-    action() {},
-  },
+  // {
+  //   label: "Télécharger",
+  //   id: "download",
+  //   type: "button",
+  //   icon: CloudUploadOutlinedIcon,
+  //   activeKeys: ["isOnly"],
+  //   action() {},
+  // },
   {
     label: "Supprimer",
     id: "remove",

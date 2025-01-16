@@ -1,7 +1,6 @@
-import { Toolbar, Box as MuiBox, Divider } from "@mui/material";
+import { Toolbar, Box as MuiBox, Divider, Typography } from "@mui/material";
 import TreeArchiveManagementView from "./tree-data-view/TreeArchiveManagementView";
 import SearchInput from "../../components/SearchInput";
-import Typography from "../../components/Typography";
 import { useSelector } from "react-redux";
 import TabsOption from "./tabs-option/TabsOption";
 import NavigationMenuButton from "./NavigationMenuButton";

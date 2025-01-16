@@ -7,12 +7,12 @@ import {
   IconButton,
   Menu,
   Stack,
+  Typography,
+  Button,
 } from "@mui/material";
 import Box from "../../components/Box";
 import AddAPhotoRoundedIcon from "@mui/icons-material/AddAPhotoRounded";
-import Typography from "../../components/Typography";
 import { useSelector } from "react-redux";
-import Button from "../../components/Button";
 
 export default function ProfileMenu({ anchorEl, onClose }) {
   const user = useSelector((store) => store.user);

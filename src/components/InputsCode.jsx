@@ -1,15 +1,16 @@
 import { FormControl, OutlinedInput, Stack, IconButton } from "@mui/material";
 import { useMemo, useState } from "react";
 import BackspaceRoundedIcon from "@mui/icons-material/BackspaceRounded";
+import PropTypes from "prop-types";
 export default function InputsCode({
-  len,
-  size,
+  len = 6,
+  size = "small",
+  sizes = 45,
+  value = "",
+  values = [],
+  readOnly = false,
   onChange,
   onChangeEnd,
-  sizes,
-  value,
-  values,
-  readOnly,
   codeRef: ref,
 }) {
   const [_values, _setValues] = useState({
@@ -110,11 +111,14 @@ export default function InputsCode({
   );
 }
 
-InputsCode.defaultProps = {
-  len: 6,
-  size: "small",
-  sizes: 45,
-  value: "",
-  values: [],
-  readOnly: false,
+InputsCode.propTypes = {
+  len: PropTypes.number,
+  size: PropTypes.string,
+  sizes: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  values: PropTypes.array([PropTypes.number, PropTypes.string]),
+  readOnly: PropTypes.bool,
+  onChange: PropTypes.func,
+  onChangeEnd: PropTypes.func,
+  codeRef: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };

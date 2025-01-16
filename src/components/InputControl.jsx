@@ -30,7 +30,10 @@ const InputControl = React.forwardRef((props, ref) => {
 InputControl.propTypes = {
   message: PropTypes.string,
   fullWidth: PropTypes.bool,
+  sx: PropTypes.object,
 };
+
+InputControl.displayName = "InputControl";
 
 const Show = ({ in: isOpen, children }) => {
   return (
@@ -46,6 +49,11 @@ const Show = ({ in: isOpen, children }) => {
       )}
     </AnimatePresence>
   );
+};
+
+Show.propTypes = {
+  in: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export default InputControl;

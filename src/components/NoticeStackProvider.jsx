@@ -1,38 +1,37 @@
 import React, { useMemo } from "react";
-import { SnackbarContent } from "notistack";
+import { SnackbarContent, SnackbarProvider } from "notistack";
 import {
   Alert,
   AlertTitle,
   SnackbarContent as MuiSnackbarContent,
-  Box as MuiBox,
+  Box,
+  alpha,
 } from "@mui/material";
 import PropTypes from "prop-types";
 
 const ReportComplete = React.forwardRef((props, ref) => {
   const {
-    id,
-    sx,
     icon,
     title,
     action,
-    variant,
+    variant = "default",
     message,
-    persist,
-    iconVariant,
-    anchorOrigin,
     hideIconVariant,
+    persist,
+    anchorOrigin,
     autoHideDuration,
+    iconVariant,
     ...otherProps
   } = props;
 
   const children = useMemo(
     () => (
       <>
-        {title && <AlertTitle>{title}</AlertTitle>}
-        {message}
+        {title && <AlertTitle>{title}</AlertTitle>}{" "}
+        {typeof message === "function" ? message(props) : message}
       </>
     ),
-    [title, message]
+    [title, message, props]
   );
 
   const snackbarProps = useMemo(
@@ -41,33 +40,56 @@ const ReportComplete = React.forwardRef((props, ref) => {
   );
 
   return (
-    <MuiBox
+    <Box
       role='alert'
       component={SnackbarContent}
       ref={ref}
       sx={{
-        maxWidth: {
-          xs: "100%",
-          md: 400,
-          lg: 500,
-          xl: 600,
+        boxShadow: 8,
+        "& .MuiSnackbarContent-root": {
+          bgcolor: "background.paper",
+          backgroundImage: (theme) => {
+            const color = alpha(
+              theme.palette.common.white,
+              theme.palette.action.activatedOpacity
+            );
+            return `linear-gradient(${color}, ${color})`;
+          },
+          color: "text.primary",
+        },
+        "& .MuiSnackbarContent-message": {
+          color: "text.secondary",
+          maxWidth: {
+            xs: "100%",
+            md: 400,
+            lg: 500,
+            xl: 600,
+          },
         },
       }}
       {...otherProps}>
-      <MuiBox
+      <Box
         component={variant === "default" ? MuiSnackbarContent : Alert}
         {...snackbarProps}
         severity={variant}
         action={
           typeof action === "function"
-            ? action({ id, persist, autoHideDuration, anchorOrigin })
+            ? action({
+                ...props,
+                persist,
+                anchorOrigin,
+                autoHideDuration,
+                iconVariant,
+              })
             : action
         }
         icon={hideIconVariant === true ? false : icon}
       />
-    </MuiBox>
+    </Box>
   );
 });
+
+ReportComplete.displayName = "ReportComplete";
 
 ReportComplete.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -75,7 +97,7 @@ ReportComplete.propTypes = {
   icon: PropTypes.node,
   action: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   variant: PropTypes.oneOf(["success", "error", "warning", "info", "default"]),
-  message: PropTypes.string.isRequired,
+  message: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   title: PropTypes.string,
   persist: PropTypes.bool,
   iconVariant: PropTypes.object,
@@ -84,7 +106,7 @@ ReportComplete.propTypes = {
   autoHideDuration: PropTypes.number,
 };
 
-export const snackbarComponents = {
+const Components = {
   success: ReportComplete,
   error: ReportComplete,
   warning: ReportComplete,
@@ -92,4 +114,14 @@ export const snackbarComponents = {
   default: ReportComplete,
 };
 
-export default ReportComplete;
+export default function NoticeStackProvider({ children, ...otherProps }) {
+  return (
+    <SnackbarProvider maxSnack={10} Components={Components} {...otherProps}>
+      {children}
+    </SnackbarProvider>
+  );
+}
+
+NoticeStackProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

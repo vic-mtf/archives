@@ -1,8 +1,7 @@
-import { AppBar, Toolbar, Box as MuiBox } from "@mui/material";
+import { AppBar, Toolbar, Box, Typography } from "@mui/material";
 import React from "react";
 // import SearchInput from '../../components/SearchInput';
-import Typography from "../../components/Typography";
-import DeconnectDialog from "./DeconnectDialog";
+import DisconnectDialog from "./DisconnectDialog";
 import MainOption from "./main-options/MainOption";
 import appConfig from "../../configs/app-config.json";
 
@@ -36,16 +35,16 @@ export default function Header() {
                             document.getElementById('root')?.dispatchEvent(customEvent);
                         }}
                     /> */}
-          <MuiBox
+          <Box
             component='div'
             display='flex'
             justifyContent='right'
             sx={{ flexGrow: 1 }}>
             <MainOption />
-          </MuiBox>
+          </Box>
         </Toolbar>
       </AppBar>
-      <DeconnectDialog />
+      <DisconnectDialog />
     </React.Fragment>
   );
 }
