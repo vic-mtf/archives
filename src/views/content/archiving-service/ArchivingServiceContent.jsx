@@ -7,6 +7,7 @@ import { frFR } from "@mui/x-data-grid/locales";
 import columns from "./columns";
 import ArchivingServiceHeader from "./archiving-service-header/ArchivingServiceHeader";
 import { useMemo } from "react";
+import scrollBarSx from "../../../utils/scrollBarSx";
 
 export default function ArchivingServiceContent() {
   const Authorization = useToken();
@@ -52,6 +53,7 @@ export default function ArchivingServiceContent() {
               outline: "none",
               border: "none",
             },
+            "& *": { ...scrollBarSx },
           }}
           onRowClick={(e) => {
             window.open(
