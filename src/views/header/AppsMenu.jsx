@@ -22,16 +22,6 @@ export default function AppsMenu({ anchorEl, onClose }) {
       keepMounted
       open={Boolean(anchorEl)}
       onClose={onClose}
-      PaperProps={{
-        sx: {
-          bgcolor: (theme) =>
-            theme.palette.background.paper + theme.customOptions.opacity,
-          border: (theme) => `1px solid ${theme.palette.divider}`,
-          height: 400,
-          width: 300,
-          backdropFilter: (theme) => `blur(${theme.customOptions.blur})`,
-        },
-      }}
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "center",
@@ -39,6 +29,14 @@ export default function AppsMenu({ anchorEl, onClose }) {
       transformOrigin={{
         vertical: "top",
         horizontal: "right",
+      }}
+      slotProps={{
+        paper: {
+          sx: {
+            height: 400,
+            width: 300,
+          },
+        },
       }}>
       <CardContent component='div'>
         <Grid container spacing={1} component='div'>
@@ -82,12 +80,11 @@ export default function AppsMenu({ anchorEl, onClose }) {
                           },
                         },
                       }}>
-                      <CardMedia
-                        component='img'
+                      <img
                         src={app.src}
                         srcSet={app.src}
                         draggable={false}
-                        sx={{
+                        style={{
                           height: 60,
                           width: 60,
                         }}

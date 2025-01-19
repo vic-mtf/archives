@@ -1,5 +1,13 @@
 const columns = [
   {
+    field: "administrativeUnit",
+    headerName: "Local",
+    // description: "This column has a value getter and is not sortable.",
+    width: 220,
+    sortable: false,
+    type: "string",
+  },
+  {
     field: "tags",
     headerName: "Étagère/Rayon",
     type: "array",
@@ -30,14 +38,6 @@ const columns = [
     width: 200,
     editable: false,
     valueFormatter: (obj) => obj?.name,
-  },
-  {
-    field: "administrativeUnit",
-    headerName: "Local",
-    // description: "This column has a value getter and is not sortable.",
-    width: 220,
-    sortable: false,
-    type: "string",
   },
   {
     field: "designation",

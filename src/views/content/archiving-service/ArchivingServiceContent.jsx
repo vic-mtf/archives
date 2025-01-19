@@ -14,7 +14,7 @@ export default function ArchivingServiceContent() {
     url: "api/stuff/archives/archived/",
     headers: { Authorization },
   });
-  console.log(data);
+
   const rows = useMemo(
     () =>
       data?.map((data) => ({

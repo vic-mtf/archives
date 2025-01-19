@@ -1,7 +1,9 @@
-const inputFile = document.createElement("input");
-export default function getFile(props = inputFile) {
-  return new Promise((resolve, reject) => {
-    if (typeof props === "object" && props)
+import { isPlainObject } from "lodash";
+
+export default async function getFile(props) {
+  const inputFile = document.createElement("input");
+  return await new Promise((resolve, reject) => {
+    if (isPlainObject(props))
       Object.keys(props).forEach((prop) => {
         inputFile[prop] = props[prop];
       });

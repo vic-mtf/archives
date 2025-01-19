@@ -1,22 +1,42 @@
+import React from "react";
 import {
   Avatar,
   Badge,
-  Box as MuiBox,
   CardContent,
   Divider,
-  IconButton,
   Menu,
   Stack,
+  IconButton,
   Typography,
+  Box,
   Button,
 } from "@mui/material";
-import Box from "../../components/Box";
 import AddAPhotoRoundedIcon from "@mui/icons-material/AddAPhotoRounded";
 import { useSelector } from "react-redux";
-
+import LogoutIcon from "@mui/icons-material/Logout";
+import getFile from "../../utils/getFile";
+import { useCallback } from "react";
+import getFullName from "../../utils/getFullName";
+import PropTypes from "prop-types";
 export default function ProfileMenu({ anchorEl, onClose }) {
   const user = useSelector((store) => store.user);
-  const fullname = `${user.lastname} ${user.middlename} ${user.firstname}`;
+  const fullname = getFullName(user);
+  const handleChangeImageProfile = useCallback(() => {
+    async () => {
+      const [file] = await getFile({ accept: "image/*" });
+      if (file) {
+        const detail = {
+          file,
+          name: "_edit_profile_image",
+        };
+        const customEvent = new CustomEvent(detail.name, {
+          detail,
+        });
+        document.getElementById("root").dispatchEvent(customEvent);
+      }
+      onClose();
+    };
+  }, [onClose]);
 
   return (
     <Menu
@@ -25,24 +45,8 @@ export default function ProfileMenu({ anchorEl, onClose }) {
       keepMounted
       open={Boolean(anchorEl)}
       onClose={onClose}
-      PaperProps={{
-        sx: {
-          bgcolor: (theme) =>
-            theme.palette.background.paper + theme.customOptions.opacity,
-          border: (theme) => `1px solid ${theme.palette.divider}`,
-          min: 350,
-          width: 360,
-          backdropFilter: (theme) => `blur(${theme.customOptions.blur})`,
-        },
-      }}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "center",
-      }}
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}>
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}>
       <CardContent
         sx={{
           display: "flex",
@@ -50,41 +54,24 @@ export default function ProfileMenu({ anchorEl, onClose }) {
           flexDirection: "column",
         }}>
         <Stack divider={<Divider />} spacing={1} display='flex' flex={1}>
-          <Box justifyContent='center' alignItems='center'>
+          <Box
+            justifyContent='center'
+            alignItems='center'
+            display='flex'
+            flexDirection='column'>
             <Badge
-              overlap='circular'
+              overlap='rectangular'
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               sx={{ my: 3 }}
               badgeContent={
                 <IconButton
                   size='small'
-                  onClick={async () => {
-                    const file = await new Promise((resolve, reject) => {
-                      const inputFile = document.createElement("input");
-                      inputFile.setAttribute("type", "file");
-                      inputFile.setAttribute("accept", "image/*");
-                      inputFile.addEventListener("change", (event) => {
-                        const [file] = event.target.files;
-                        if (file) resolve(file);
-                        else reject("Error file");
-                      });
-                      inputFile.click();
-                    });
-                    if (file) {
-                      const _eventName = "_edite_profile_image";
-                      const customEvent = new CustomEvent(_eventName, {
-                        detail: { file, name: _eventName },
-                      });
-                      document
-                        .getElementById("root")
-                        .dispatchEvent(customEvent);
-                    }
-                    onClose();
-                  }}
+                  onClick={handleChangeImageProfile}
                   sx={{
-                    bgcolor: (theme) => theme.palette.background.paper + "aa",
                     backdropFilter: (theme) =>
                       `blur(${theme.customOptions.blur})`,
+                    border: (theme) =>
+                      `1px solid ${theme.palette.background.paper + "30"}`,
                   }}>
                   <AddAPhotoRoundedIcon fontSize='small' />
                 </IconButton>
@@ -93,6 +80,7 @@ export default function ProfileMenu({ anchorEl, onClose }) {
                 sx={{ width: 100, height: 100, fontSize: 50 }}
                 alt={fullname}
                 src={user.image}
+                variant='rounded'
               />
             </Badge>
             <Typography fontWeight='bold' variant='body1'>
@@ -101,30 +89,39 @@ export default function ProfileMenu({ anchorEl, onClose }) {
             <Typography paragraph>{user.email}</Typography>
           </Box>
           <Box>
-            <MuiBox
+            <Box
               alignItems='center'
               display='flex'
               width='100%'
               justifyContent='center'
               my={1}>
               <Button
-                variant='outlined'
-                color='inherit'
+                variant='contained'
+                color='error'
                 fullWidth={false}
-                size='medium'
+                // size="medium"
+                endIcon={React.createElement(LogoutIcon)}
                 onClick={() => {
-                  const customEvent = new CustomEvent("_disconnected", {
-                    detail: { name: "_disconnected" },
-                  });
+                  const detail = { name: "_disconnected" };
+                  const customEvent = new CustomEvent(detail.name, { detail });
                   document.getElementById("root").dispatchEvent(customEvent);
                 }}>
-                Se déconnecter
+                Déconnexion
               </Button>
-            </MuiBox>
+            </Box>
           </Box>
           <Box> </Box>
         </Stack>
-        <Stack display='flex' direction='row' spacing={1}>
+        <Stack
+          display='flex'
+          direction='row'
+          spacing={1}
+          sx={{
+            "& > .MuiButton-root": {
+              color: "text.secondary",
+              fontSize: (theme) => theme.typography.caption.fontSize,
+            },
+          }}>
           <Button color='inherit'>Politique de confidentialité</Button>
           <Button color='inherit'>Conditions d'utilisation</Button>
         </Stack>
@@ -132,3 +129,8 @@ export default function ProfileMenu({ anchorEl, onClose }) {
     </Menu>
   );
 }
+
+ProfileMenu.propTypes = {
+  anchorEl: PropTypes.object,
+  onClose: PropTypes.func,
+};
